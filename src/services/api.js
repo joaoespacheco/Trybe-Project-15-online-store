@@ -39,4 +39,3 @@ export async function getProductsFromCategoryAndQuery(categoryId = false, query 
     }
   }
 }
-
