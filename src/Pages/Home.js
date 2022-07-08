@@ -34,4 +34,5 @@ Home.propTypes = {
   homeStatusChange: PropTypes.func.isRequired,
 };
 
+
 export default Home;
