@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './Pages/Home';
 import './App.css';
+import ShopCart from './Components/ShopCart';
 
 class App extends React.Component {
   constructor() {
     super();
-
     this.state = {
       homeStatus: false,
     };
@@ -22,6 +22,13 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route
+            path="/shopcart"
+            render={ () => (
+              <ShopCart />
+            ) }
+
+          />
+          <Route
             path="/"
             render={ () => (
               <Home
@@ -34,5 +41,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;
