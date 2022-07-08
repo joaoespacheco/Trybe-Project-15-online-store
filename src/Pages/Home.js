@@ -16,9 +16,11 @@ class Home extends React.Component {
         {homeStatus ? (
           ''
         ) : (
-          <h2 data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </h2>
+          <div>
+            <h2 data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </h2>
+          </div>
         )}
       </main>
     );
