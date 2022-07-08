@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Components/Header';
+import Categories from '../Components/Categories';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -12,14 +13,17 @@ class Home extends React.Component {
     const { homeStatus } = this.props;
     return (
       <main>
-        <Header />
-        {homeStatus ? (
-          ''
-        ) : (
-          <h2 data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </h2>
-        )}
+        <div>
+          <Header />
+          {homeStatus ? (
+            ''
+          ) : (
+            <h2 data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </h2>
+          )}
+        </div>
+        <Categories />
       </main>
     );
   }
