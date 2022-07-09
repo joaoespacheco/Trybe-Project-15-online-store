@@ -1,7 +1,6 @@
 import React from 'react';
-import ButtonCart from './ButtonCart';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import ButtonCart from './ButtonCart';
 
 class Header extends React.Component {
   render() {
