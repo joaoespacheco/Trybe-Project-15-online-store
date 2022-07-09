@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ButtonCart from './ButtonCart';
 
 class Header extends React.Component {
   render() {
@@ -11,16 +11,8 @@ class Header extends React.Component {
             type="text"
           />
         </label>
-        <Link to="/shopcart">
-          <button
-            type="button"
-            data-testid="shopping-cart-button"
-          >
-            carrinho
-          </button>
-        </Link>
+        <ButtonCart />
       </div>
-
     );
   }
 }
