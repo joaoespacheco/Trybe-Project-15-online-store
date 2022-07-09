@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class ProductsCard extends React.Component {
   render() {
     const { products } = this.props;
-    console.log(products);
     return (
       <section>
         {products.length > 0 ? (
