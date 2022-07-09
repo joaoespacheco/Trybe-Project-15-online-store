@@ -10,6 +10,7 @@ class Home extends React.Component {
     super();
     this.state = {
       inputFilter: '',
+      categoryFilter: '',
       products: [],
       homeStatus: false,
     };
@@ -29,12 +30,20 @@ class Home extends React.Component {
   }
 
    getProductsApi = async () => {
-     const { inputFilter } = this.state;
-     const produtos = await getProductsFromCategoryAndQuery('', inputFilter);
+     const { inputFilter, categoryFilter } = this.state;
+     const produtos = await getProductsFromCategoryAndQuery(categoryFilter, inputFilter);
      this.setState({
        products: produtos.results,
        homeStatus: true,
      });
+   }
+
+   categoryFilterChange = ({ target }) => {
+     const { name } = target;
+     this.setState(({
+       categoryFilter: name,
+       inputFilter: '',
+     }), () => this.getProductsApi());
    }
 
    render() {
@@ -57,7 +66,9 @@ class Home extends React.Component {
              </h2>
            )}
          </div>
-         <Categories />
+         <Categories
+           categoryFilter={ this.categoryFilterChange }
+         />
        </main>
      );
    }
