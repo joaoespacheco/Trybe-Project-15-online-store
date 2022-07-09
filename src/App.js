@@ -5,18 +5,6 @@ import './App.css';
 import ShopCart from './Components/ShopCart';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      homeStatus: false,
-    };
-  }
-
-  // Essa função modifica o status do homeStatus
-  homeStatusChange = (status) => {
-    this.setState({ homeStatus: status });
-  }
-
   render() {
     return (
       <BrowserRouter>
