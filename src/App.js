@@ -22,7 +22,8 @@ class App extends React.Component {
 
   getStorageProducts = () => {
     const shopCartStorage = JSON.parse(localStorage.getItem('ShopCart'));
-    if (shopCartStorage) {
+    console.log(shopCartStorage);
+    if (shopCartStorage && shopCartStorage.length > 0) {
       this.setState({
         cartProducts: shopCartStorage,
         statusCartShop: true,
@@ -62,6 +63,29 @@ class App extends React.Component {
     this.getStorageProducts();
   };
 
+  decreaseQuantityOfProduct = ({ target }) => {
+    const { name } = target;
+    const { cartProducts } = this.state;
+    let productPosition = 0;
+    cartProducts.forEach(({ id }, index) => {
+      if (name === id) productPosition = index;
+    });
+    const productFind = cartProducts.find(({ id }) => id === name);
+    if (productFind.quantity > 1) productFind.quantity -= 1;
+    const newCartProducts = cartProducts;
+    newCartProducts.splice(productPosition, 1, productFind);
+    localStorage.setItem('ShopCart', JSON.stringify([...newCartProducts]));
+    this.getStorageProducts();
+  }
+
+  removeToCart = ({ target }) => {
+    const { name } = target;
+    const { cartProducts } = this.state;
+    const newCart = cartProducts.filter(({ id }) => id !== name);
+    localStorage.setItem('ShopCart', JSON.stringify([...newCart]));
+    this.getStorageProducts();
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -80,9 +104,11 @@ class App extends React.Component {
             render={ () => (
               <ShopCart
                 { ...this.state }
+                addProductOnCart={ this.addProductOnCart }
+                decreaseQuantity={ this.decreaseQuantityOfProduct }
+                removeToCart={ this.removeToCart }
               />
             ) }
-
           />
           <Route
             path="/"
@@ -98,4 +124,3 @@ class App extends React.Component {
   }
 }
 export default App;
-

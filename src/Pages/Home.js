@@ -22,10 +22,6 @@ class Home extends React.Component {
 
   handleChanger = ({ target }) => {
     const { name, value } = target;
-    this.modifyState(name, value);
-  };
-
-  modifyState = (name, value) => {
     this.setState({ [name]: value });
   };
 
