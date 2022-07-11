@@ -51,6 +51,9 @@ class ShopCards extends React.Component {
 
 ShopCards.propTypes = {
   cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addProductOnCart: PropTypes.func.isRequired,
+  decreaseQuantity: PropTypes.func.isRequired,
+  removeToCart: PropTypes.func.isRequired,
 };
 
 export default ShopCards;
