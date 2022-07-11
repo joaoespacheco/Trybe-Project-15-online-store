@@ -13,6 +13,7 @@ class App extends React.Component {
       cartProducts: [],
       productToAdd: {},
       statusCartShop: false,
+      form: {},
     };
   }
 

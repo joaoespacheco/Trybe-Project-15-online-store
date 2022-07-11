@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getFetchProduct } from '../services/api';
+import Form from './Form';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -47,6 +48,7 @@ class ProductDetail extends React.Component {
             >
               Adicionar ao carrinho
             </button>
+            <Form />
           </div>
         )}
       </section>
