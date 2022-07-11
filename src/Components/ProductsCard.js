@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class ProductsCard extends React.Component {
   render() {
-    const { products } = this.props;
+    const { products, addToCart } = this.props;
     return (
       <section>
         {products.length > 0 ? (
@@ -13,6 +13,14 @@ class ProductsCard extends React.Component {
               <img src={ thumbnail } alt="produto" />
               <h3>{title}</h3>
               <p>{price}</p>
+              <button
+                name={ id }
+                type="button"
+                data-testid="product-add-to-cart"
+                onClick={ addToCart }
+              >
+                Adicionar ao carrinho
+              </button>
               <Link to={ `/products/${id}` }>
                 <button
                   type="button"
@@ -35,6 +43,7 @@ class ProductsCard extends React.Component {
 
 ProductsCard.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductsCard;
