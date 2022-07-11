@@ -23,60 +23,63 @@ class Home extends React.Component {
   handleChanger = ({ target }) => {
     const { name, value } = target;
     this.modifyState(name, value);
-  }
+  };
 
   modifyState = (name, value) => {
-    this.setState(({ [name]: value }));
+    this.setState({ [name]: value });
+  };
+
+  getProductsApi = async () => {
+    const { inputFilter, categoryFilter } = this.state;
+    const produtos = await getProductsFromCategoryAndQuery(
+      categoryFilter,
+      inputFilter,
+    );
+    this.setState({
+      products: produtos.results,
+      homeStatus: true,
+    });
+  };
+
+  categoryFilterChange = ({ target }) => {
+    const { name } = target;
+    this.setState(
+      {
+        categoryFilter: name,
+        inputFilter: '',
+      },
+      () => this.getProductsApi(),
+    );
+  };
+
+  render() {
+    const { homeStatus } = this.state;
+    const { addProductOnCart } = this.props;
+    return (
+      <main>
+        <div>
+          <Header
+            { ...this.state }
+            funChanger={ this.handleChanger }
+            productsApi={ this.getProductsApi }
+          />
+          {homeStatus ? (
+            <ProductsCard { ...this.state } addToCart={ addProductOnCart } />
+          ) : (
+            <h2 data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </h2>
+          )}
+        </div>
+        <Categories categoryFilter={ this.categoryFilterChange } />
+      </main>
+    );
   }
-
-   getProductsApi = async () => {
-     const { inputFilter, categoryFilter } = this.state;
-     const produtos = await getProductsFromCategoryAndQuery(categoryFilter, inputFilter);
-     this.setState({
-       products: produtos.results,
-       homeStatus: true,
-     });
-   }
-
-   categoryFilterChange = ({ target }) => {
-     const { name } = target;
-     this.setState(({
-       categoryFilter: name,
-       inputFilter: '',
-     }), () => this.getProductsApi());
-   }
-
-   render() {
-     const { homeStatus } = this.state;
-     return (
-       <main>
-         <div>
-           <Header
-             { ...this.state }
-             funChanger={ this.handleChanger }
-             productsApi={ this.getProductsApi }
-           />
-           {homeStatus ? (
-             <ProductsCard
-               { ...this.state }
-             />
-           ) : (
-             <h2 data-testid="home-initial-message">
-               Digite algum termo de pesquisa ou escolha uma categoria.
-             </h2>
-           )}
-         </div>
-         <Categories
-           categoryFilter={ this.categoryFilterChange }
-         />
-       </main>
-     );
-   }
 }
 
 Home.propTypes = {
   homeStatus: PropTypes.bool.isRequired,
-  homeStatusChange: PropTypes.func.isRequired,
+  addProductOnCart: PropTypes.func.isRequired,
 };
 
 export default Home;
