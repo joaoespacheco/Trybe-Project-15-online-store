@@ -4,7 +4,7 @@ import ButtonCart from './ButtonCart';
 
 class Header extends React.Component {
   render() {
-    const { inputFilter, funChanger, productsApi } = this.props;
+    const { inputFilter, funcChanger, productsApi } = this.props;
     return (
       <div>
         <label htmlFor="search-filter">
@@ -13,7 +13,7 @@ class Header extends React.Component {
             id="search-filter"
             type="text"
             value={ inputFilter }
-            onChange={ funChanger }
+            onChange={ funcChanger }
             data-testid="query-input"
           />
         </label>
@@ -32,7 +32,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   inputFilter: PropTypes.string.isRequired,
-  funChanger: PropTypes.func.isRequired,
+  funcChanger: PropTypes.func.isRequired,
   productsApi: PropTypes.func.isRequired,
 };
 
