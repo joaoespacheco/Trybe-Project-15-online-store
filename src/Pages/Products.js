@@ -21,6 +21,7 @@ class Products extends React.Component {
         </div>
         <ProductDetail
           productId={ id }
+          { ...this.props }
         />
       </main>
     );

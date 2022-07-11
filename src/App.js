@@ -71,6 +71,7 @@ class App extends React.Component {
             render={ (props) => (
               <Products
                 { ...props }
+                addProductOnCart={ this.addProductOnCart }
               />
             ) }
           />

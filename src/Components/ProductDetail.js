@@ -22,7 +22,8 @@ class ProductDetail extends React.Component {
 
   render() {
     const { productInfo } = this.state;
-    const { title, price, pictures } = productInfo;
+    const { id, title, price, pictures } = productInfo;
+    const { addProductOnCart } = this.props;
     return (
       <section>
         { Object.keys(productInfo).length > 0 && (
@@ -38,6 +39,14 @@ class ProductDetail extends React.Component {
                 <p>Especificação 3</p>
               </div>
             </div>
+            <button
+              name={ id }
+              type="button"
+              data-testid="product-detail-add-to-cart"
+              onClick={ addProductOnCart }
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
         )}
       </section>
@@ -47,6 +56,7 @@ class ProductDetail extends React.Component {
 
 ProductDetail.propTypes = {
   productId: PropTypes.string.isRequired,
+  addProductOnCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetail;
