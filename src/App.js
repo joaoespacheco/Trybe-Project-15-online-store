@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { getFetchProduct } from './services/api';
+import { getProductsFromCategoryAndQuery } from './services/api';
 import Home from './Pages/Home';
 import './App.css';
 import ShopCart from './Pages/ShopCart';
@@ -10,6 +10,10 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      products: [],
+      homeStatus: false,
+      inputFilter: '',
+      categoryFilter: '',
       cartProducts: [],
       productToAdd: {},
       statusCartShop: false,
@@ -19,11 +23,40 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getStorageProducts();
+    this.setState({ homeStatus: false });
   }
+
+  handleChanger = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  };
+
+  getProductsApi = async () => {
+    const { categoryFilter, inputFilter } = this.state;
+    const produtos = await getProductsFromCategoryAndQuery(
+      categoryFilter,
+      inputFilter,
+    );
+    this.setState({
+      products: produtos.results,
+      homeStatus: true,
+    });
+  };
+
+  categoryFilterChange = ({ target }) => {
+    const { name } = target;
+    this.setState(
+      {
+        categoryFilter: name,
+        inputFilter: '',
+      },
+      () => this.getProductsApi(),
+    );
+  };
 
   getStorageProducts = () => {
     const shopCartStorage = JSON.parse(localStorage.getItem('ShopCart'));
-    if (shopCartStorage) {
+    if (shopCartStorage && shopCartStorage.length > 0) {
       this.setState({
         cartProducts: shopCartStorage,
         statusCartShop: true,
@@ -35,11 +68,8 @@ class App extends React.Component {
 
   addProductOnCart = ({ target }) => {
     const { name } = target;
-    this.fetchProduct(name);
-  };
-
-  fetchProduct = async (id) => {
-    const productInfo = await getFetchProduct(id);
+    const { products } = this.state;
+    const productInfo = products.find(({ id }) => id === name);
     this.setState({ productToAdd: { ...productInfo, quantity: 1 } },
       () => this.addProductToStorage());
   };
@@ -63,6 +93,29 @@ class App extends React.Component {
     this.getStorageProducts();
   };
 
+  decreaseQuantityOfProduct = ({ target }) => {
+    const { name } = target;
+    const { cartProducts } = this.state;
+    let productPosition = 0;
+    cartProducts.forEach(({ id }, index) => {
+      if (name === id) productPosition = index;
+    });
+    const productFind = cartProducts.find(({ id }) => id === name);
+    if (productFind.quantity > 1) productFind.quantity -= 1;
+    const newCartProducts = cartProducts;
+    newCartProducts.splice(productPosition, 1, productFind);
+    localStorage.setItem('ShopCart', JSON.stringify([...newCartProducts]));
+    this.getStorageProducts();
+  }
+
+  removeToCart = ({ target }) => {
+    const { name } = target;
+    const { cartProducts } = this.state;
+    const newCart = cartProducts.filter(({ id }) => id !== name);
+    localStorage.setItem('ShopCart', JSON.stringify([...newCart]));
+    this.getStorageProducts();
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -81,9 +134,11 @@ class App extends React.Component {
             render={ () => (
               <ShopCart
                 { ...this.state }
+                addProductOnCart={ this.addProductOnCart }
+                decreaseQuantity={ this.decreaseQuantityOfProduct }
+                removeToCart={ this.removeToCart }
               />
             ) }
-
           />
           <Route
             path="/"
@@ -91,6 +146,9 @@ class App extends React.Component {
               <Home
                 { ...this.state }
                 addProductOnCart={ this.addProductOnCart }
+                getProductsApi={ this.getProductsApi }
+                categoryFilterChange={ this.categoryFilterChange }
+                handleChanger={ this.handleChanger }
               />) }
           />
         </Switch>
@@ -98,4 +156,5 @@ class App extends React.Component {
     );
   }
 }
+
 export default App;
