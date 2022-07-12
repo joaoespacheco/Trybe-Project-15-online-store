@@ -24,7 +24,9 @@ class Header extends React.Component {
         >
           Pesquisar
         </button>
-        <ButtonCart />
+        <ButtonCart
+          { ...this.props }
+        />
       </div>
     );
   }
