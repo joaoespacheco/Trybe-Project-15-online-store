@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import './App.css';
 import ShopCart from './Pages/ShopCart';
 import Products from './Pages/Products';
+import Checkout from './Pages/Checkout';
 
 class App extends React.Component {
   constructor() {
@@ -161,6 +162,14 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route
+            path="/checkout"
+            render={ () => (
+              <Checkout
+                { ...this.state }
+              />
+            ) }
+          />
+          <Route
             path="/products/:id"
             render={ (props) => (
               <Products
@@ -201,4 +210,3 @@ class App extends React.Component {
 }
 
 export default App;
-
