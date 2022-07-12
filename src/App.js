@@ -24,6 +24,7 @@ class App extends React.Component {
         description: '',
       },
       avaliation: [],
+      quantidade: 0,
     };
   }
 
@@ -92,11 +93,12 @@ class App extends React.Component {
       this.setState({
         cartProducts: shopCartStorage,
         statusCartShop: true,
-      });
+      }, () => this.cartSize());
     } else {
-      this.setState({ statusCartShop: false });
+      this.setState({ statusCartShop: false },
+        () => this.cartSize());
     }
-  };
+  }
 
   getStorageAvaliation = () => {
     const avaliationStorage = JSON.parse(localStorage.getItem('saveAvaliation'));
@@ -155,6 +157,19 @@ class App extends React.Component {
     const newCart = cartProducts.filter(({ id }) => id !== name);
     localStorage.setItem('ShopCart', JSON.stringify([...newCart]));
     this.getStorageProducts();
+  }
+
+  cartSize = () => {
+    const { cartProducts } = this.state;
+    if (cartProducts.length > 0) {
+      let quantidade = 0;
+      cartProducts.forEach(({ quantity }) => {
+        quantidade += quantity;
+      });
+      this.setState({ quantidade });
+    } else {
+      this.setState({ quantidade: 0 });
+    }
   }
 
   render() {
