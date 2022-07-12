@@ -125,7 +125,8 @@ class App extends React.Component {
         if (productToAdd.id === id) productPosition = index;
       });
       const productFind = cartProducts.find(({ id }) => id === productToAdd.id);
-      productFind.quantity += 1;
+      const maxQuantity = productFind.available_quantity;
+      if (productFind.quantity < maxQuantity) { productFind.quantity += 1; }
       const newCartProducts = cartProducts;
       newCartProducts.splice(productPosition, 1, productFind);
       localStorage.setItem('ShopCart', JSON.stringify([...newCartProducts]));

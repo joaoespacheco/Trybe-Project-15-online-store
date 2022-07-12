@@ -36,4 +36,3 @@ ProductAvaliation.propTypes = {
 };
 
 export default ProductAvaliation;
-
