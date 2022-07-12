@@ -22,7 +22,7 @@ class ProductDetail extends React.Component {
 
   render() {
     const { productInfo } = this.state;
-    const { id, title, price, pictures } = productInfo;
+    const { id, title, price, pictures, shipping } = productInfo;
     const { addProductOnCart } = this.props;
     return (
       <section>
@@ -30,6 +30,11 @@ class ProductDetail extends React.Component {
           <div>
             <h2 data-testid="product-detail-name">{title}</h2>
             <h3>{`R$${price}`}</h3>
+            { shipping.free_shipping ? (
+              <p data-testid="free-shipping">Frete Grátis</p>
+            ) : (
+              ''
+            )}
             <div>
               <img src={ pictures[0].url } alt="produto" />
               <div>
