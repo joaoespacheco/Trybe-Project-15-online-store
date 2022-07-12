@@ -8,11 +8,16 @@ class ProductsCard extends React.Component {
     return (
       <section>
         {products.length > 0 ? (
-          products.map(({ id, title, price, thumbnail }) => (
+          products.map(({ id, title, price, thumbnail, shipping }) => (
             <div key={ id } data-testid="product">
               <img src={ thumbnail } alt="produto" />
               <h3>{title}</h3>
               <p>{price}</p>
+              { shipping.free_shipping ? (
+                <p data-testid="free-shipping">Frete Grátis</p>
+              ) : (
+                ''
+              )}
               <button
                 name={ id }
                 type="button"
