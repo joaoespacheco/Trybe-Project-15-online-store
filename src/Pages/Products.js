@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ButtonCart from '../Components/ButtonCart';
 import ProductDetail from '../Components/ProductDetail';
+import Form from '../Components/Form';
+import ProductAvaliation from '../Components/ProductAvaliation';
 
 class Products extends React.Component {
   render() {
@@ -21,6 +23,12 @@ class Products extends React.Component {
         </div>
         <ProductDetail
           productId={ id }
+          { ...this.props }
+        />
+        <Form
+          { ...this.props }
+        />
+        <ProductAvaliation
           { ...this.props }
         />
       </main>

@@ -17,11 +17,17 @@ class App extends React.Component {
       cartProducts: [],
       productToAdd: {},
       statusCartShop: false,
-      form: {},
+      form: {
+        email: '',
+        rate: '',
+        description: '',
+      },
+      avaliation: [],
     };
   }
 
   componentDidMount() {
+    this.getStorageAvaliation();
     this.getStorageProducts();
     this.setState({ homeStatus: false });
   }
@@ -29,6 +35,31 @@ class App extends React.Component {
   handleChanger = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
+  };
+
+  formChanger = ({ target }) => {
+    const { name, value } = target;
+    this.setState(({ form }) => ({ form: {
+      ...form,
+      [name]: value,
+    } }));
+  };
+
+  saveAvaliation = () => {
+    const { form } = this.state;
+    this.setState((prevState) => ({ avaliation: [...prevState.avaliation, form] }),
+      () => this.saveReset());
+  };
+
+  saveReset = () => {
+    const { avaliation } = this.state;
+    localStorage.setItem('saveAvaliation', JSON.stringify([...avaliation]));
+    this.setState({ form: {
+      email: '',
+      rate: '',
+      description: '',
+    } },
+    () => this.getStorageAvaliation());
   };
 
   getProductsApi = async () => {
@@ -63,6 +94,15 @@ class App extends React.Component {
       });
     } else {
       this.setState({ statusCartShop: false });
+    }
+  };
+
+  getStorageAvaliation = () => {
+    const avaliationStorage = JSON.parse(localStorage.getItem('saveAvaliation'));
+    if (avaliationStorage && avaliationStorage.length > 0) {
+      this.setState({
+        avaliation: avaliationStorage,
+      });
     }
   };
 
@@ -124,7 +164,10 @@ class App extends React.Component {
             path="/products/:id"
             render={ (props) => (
               <Products
+                { ...this.state }
                 { ...props }
+                saveAvaliation={ this.saveAvaliation }
+                formChanger={ this.formChanger }
                 addProductOnCart={ this.addProductOnCart }
               />
             ) }
