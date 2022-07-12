@@ -19,7 +19,9 @@ class Products extends React.Component {
               Voltar
             </button>
           </Link>
-          <ButtonCart />
+          <ButtonCart
+            { ...this.props }
+          />
         </div>
         <ProductDetail
           productId={ id }
