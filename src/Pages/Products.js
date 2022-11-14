@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ButtonCart from '../Components/ButtonCart';
 import ProductDetail from '../Components/ProductDetail';
 import Form from '../Components/Form';
@@ -8,7 +8,7 @@ import ProductAvaliation from '../Components/ProductAvaliation';
 
 class Products extends React.Component {
   render() {
-    const { match: { params: { id } } } = this.props;
+    const { match: { params: { id } }, products } = this.props;
     return (
       <main>
         <div>
@@ -33,6 +33,7 @@ class Products extends React.Component {
         <ProductAvaliation
           { ...this.props }
         />
+        {products.length < 1 ? <Redirect to="/" /> : ''}
       </main>
     );
   }
@@ -40,6 +41,7 @@ class Products extends React.Component {
 
 Products.propTypes = {
   match: PropTypes.objectOf(PropTypes.any).isRequired,
+  products: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default Products;
