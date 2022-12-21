@@ -15,8 +15,8 @@ Através da loja os usuários poderão:
 Os dados dos produtos utilizados foram obtidos através da <strong>API do Mercado Livre</strong>.
 
 Durante a elaboração do projeto foram utilizadas metodologias de desenvolvimento ágil.
-</br>
 
+</br>
 <details>
 <summary><strong>Desempenho</strong></summary>
 Aprovado com 100% de desempenho em todos os requisitos
