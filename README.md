@@ -4,7 +4,7 @@
 
 Projeto desenvolvido em <strong>grupo</strong> durante o módulo de front-end do curso de desenvolvimento web da [Trybe](https://www.betrybe.com/).
 
-Neste projeto foi desenvolvido a aplicação React de uma loja online simplificada (Sem persistência de banco de dados). 
+Neste projeto foi desenvolvido a aplicação React de uma loja online simplificada (sem persistência de banco de dados). 
 
 Através da loja os usuários poderão:
 > * Buscar produtos por termos e categorias
@@ -56,7 +56,7 @@ Aprovado com 100% de desempenho em todos os requisitos
 * Desenvolver uma aplicação React
 * Consumir dados de uma API
 * Utilizar <strong>React Router</strong>
-* Criar várias páginas e rotas
+* Criar múltiplas páginas e rotas
 
 ## 🧰 Ferramentas:
 * HTML
