@@ -15,6 +15,7 @@ Através da loja os usuários poderão:
 Os dados dos produtos utilizados foram obtidos através da <strong>API do Mercado Livre</strong>.
 
 Durante a elaboração do projeto foram utilizadas metodologias de desenvolvimento ágil.
+</br>
 
 <details>
 <summary><strong>Desempenho</strong></summary>
@@ -50,6 +51,7 @@ Aprovado com 100% de desempenho em todos os requisitos
 <summary><strong>Visualizar projeto</strong></summary>
 :construction: Área em construção ! :construction:
 </details>
+</br>
 
 ## 🤹🏽 Habilidades Desenvolvidas:
 * Trabalhar em grupo utilizando metodologias de desenvolvimento ágil
@@ -57,6 +59,7 @@ Aprovado com 100% de desempenho em todos os requisitos
 * Consumir dados de uma API
 * Utilizar <strong>React Router</strong>
 * Criar múltiplas páginas e rotas
+</br>
 
 ## 🧰 Ferramentas:
 * HTML
@@ -65,6 +68,7 @@ Aprovado com 100% de desempenho em todos os requisitos
 * React
   * React Router
 * Trello
+</br>
 
 ## 📝 Desenvolvido por:
 * [João Emanuel Soares Pacheco](https://github.com/joaoespacheco)
