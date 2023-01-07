@@ -16,10 +16,20 @@ Os dados dos produtos utilizados foram obtidos através da <strong>API do Mercad
 
 Durante a elaboração do projeto foram utilizadas metodologias de desenvolvimento ágil.
 
+#### Observações:
+Apesar dos requisitos obrigatórios e bônus do projeto estarem cumpridos há espaço para melhorias dentro da aplicação e por isso a fase de desenvolvimento ainda está em progresso.
+</br>
+Tarefas em andamento:
+> * Testes automatizados
+> * Estilização
+
 </br>
 <details>
 <summary><strong>Desempenho</strong></summary>
 Aprovado com 100% de desempenho em todos os requisitos
+
+![image](https://user-images.githubusercontent.com/99846604/211171553-de068a54-8f1a-45f8-9e2c-c09db07dfd4d.png)
+
 </details>
 
 <details>
@@ -51,6 +61,21 @@ Aprovado com 100% de desempenho em todos os requisitos
 <summary><strong>Visualizar projeto</strong></summary>
 :construction: Área em construção ! :construction:
 </details>
+</br>
+
+## ⚙️ Execução
+
+Faça o clone deste repositório com o seguinte comando:
+
+        git clone git@github.com:joaoespacheco/Trybe-Project-15-online-store.git
+
+Para exercutar o projeto utilize o comando abaixo para instalar as dependências:
+
+        npm install
+
+Inicie a aplicação com o comando abaixo:
+
+        npm start
 </br>
 
 ## 🤹🏽 Habilidades Desenvolvidas:
