@@ -69,7 +69,7 @@ Faça o clone deste repositório com o seguinte comando:
 
         git clone git@github.com:joaoespacheco/Trybe-Project-15-online-store.git
 
-Para exercutar o projeto utilize o comando abaixo para instalar as dependências:
+Dentro da pasta raiz do projeto, instale as dependências com o seguinte comando:
 
         npm install
 
